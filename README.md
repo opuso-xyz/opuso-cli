@@ -28,31 +28,66 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`opuso hello [FILE]`](#opuso-hello-file)
+* [`opuso delete ID`](#opuso-delete-id)
+* [`opuso edit ID`](#opuso-edit-id)
+* [`opuso finish [ID]`](#opuso-finish-id)
 * [`opuso help [COMMAND]`](#opuso-help-command)
+* [`opuso list`](#opuso-list)
 * [`opuso login`](#opuso-login)
-* [`opuso logout [FILE]`](#opuso-logout-file)
-* [`opuso signup [FILE]`](#opuso-signup-file)
+* [`opuso logout`](#opuso-logout)
+* [`opuso new TITLE DESCRIPTION`](#opuso-new-title-description)
+* [`opuso signup`](#opuso-signup)
 
-## `opuso hello [FILE]`
+## `opuso delete ID`
 
-describe the command here
+Fully deletes a todo
 
 ```
 USAGE
-  $ opuso hello [FILE]
+  $ opuso delete ID
+
+ARGUMENTS
+  ID  ID of the tag to delete
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ opuso hello
-  hello world from ./src/hello.ts!
+  -h, --help  show CLI help
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/delete.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/delete.ts)_
+
+## `opuso edit ID`
+
+Edit a specific todo by ID
+
+```
+USAGE
+  $ opuso edit ID
+
+ARGUMENTS
+  ID  ID of the todo to edit
+
+OPTIONS
+  -a, --title=title              Title of the todo
+  -d, --description=description  Description of the todo
+  -h, --help                     show CLI help
+  -t, --tags=tags                A list of tags separated by commas
+```
+
+_See code: [src/commands/edit.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/edit.ts)_
+
+## `opuso finish [ID]`
+
+Marks a todo as completed
+
+```
+USAGE
+  $ opuso finish [ID]
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/finish.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/finish.ts)_
 
 ## `opuso help [COMMAND]`
 
@@ -71,6 +106,23 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
 
+## `opuso list`
+
+List all current todos
+
+```
+USAGE
+  $ opuso list
+
+OPTIONS
+  -a, --all      Show all todos, including completed ones
+  -f, --force
+  -h, --help     show CLI help
+  -t, --tag=tag  Filter by a specific tag
+```
+
+_See code: [src/commands/list.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/list.ts)_
+
 ## `opuso login`
 
 Login to your Opuso account
@@ -78,37 +130,69 @@ Login to your Opuso account
 ```
 USAGE
   $ opuso login
-
-OPTIONS
-  -f, --force
-  -h, --help   show CLI help
 ```
 
 _See code: [src/commands/login.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/login.ts)_
 
-## `opuso logout [FILE]`
+## `opuso logout`
 
-describe the command here
+Log out of the current user account
 
 ```
 USAGE
-  $ opuso logout [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  $ opuso logout
 ```
 
 _See code: [src/commands/logout.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/logout.ts)_
 
-## `opuso signup [FILE]`
+## `opuso new TITLE DESCRIPTION`
+
+Create a new todo
+
+```
+USAGE
+  $ opuso new TITLE DESCRIPTION
+
+ARGUMENTS
+  TITLE        Title of the todo
+  DESCRIPTION  Todos description
+
+OPTIONS
+  -h, --help       show CLI help
+  -t, --tags=tags  A list of tags separated by commas
+```
+
+_See code: [src/commands/new.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/new.ts)_
+
+## `opuso signup`
+
+Sign up with a new user account
+
+```
+USAGE
+  $ opuso signup
+```
+
+_See code: [src/commands/signup.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/signup.ts)_
+<!-- commandsstop -->
+`* [`opuso delete [FILE]`](#opuso-delete-file)
+* [`opuso edit [FILE]`](#opuso-edit-file)
+* [`opuso finish [FILE]`](#opuso-finish-file)
+* [`opuso help [COMMAND]`](#opuso-help-command)
+* [`opuso list [FILE]`](#opuso-list-file)
+* [`opuso login`](#opuso-login)
+* [`opuso logout`](#opuso-logout)
+* [`opuso new [FILE]`](#opuso-new-file)
+* [`opuso signup`](#opuso-signup)
+* [`opuso todo OPERATION`](#opuso-todo-operation)
+
+## `opuso delete [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ opuso signup [FILE]
+  $ opuso delete [FILE]
 
 OPTIONS
   -f, --force
@@ -116,5 +200,118 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
+_See code: [src/commands/delete.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/delete.ts)_
+
+## `opuso edit [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ opuso edit [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/edit.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/edit.ts)_
+
+## `opuso finish [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ opuso finish [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/finish.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/finish.ts)_
+
+## `opuso help [COMMAND]`
+
+display help for opuso
+
+```
+USAGE
+  $ opuso help [COMMAND]
+
+ARGUMENTS
+  COMMAND  command to show help for
+
+OPTIONS
+  --all  see all commands in CLI
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
+
+## `opuso list [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ opuso list [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/list.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/list.ts)_
+
+## `opuso login`
+
+Login to your Opuso account
+
+```
+USAGE
+  $ opuso login
+```
+
+_See code: [src/commands/login.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/login.ts)_
+
+## `opuso logout`
+
+Log out of the current user account
+
+```
+USAGE
+  $ opuso logout
+```
+
+_See code: [src/commands/logout.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/logout.ts)_
+
+## `opuso new [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ opuso new [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/new.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/new.ts)_
+
+## `opuso signup`
+
+Sign up with a new user account
+
+```
+USAGE
+  $ opuso signup
+```
+
 _See code: [src/commands/signup.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/signup.ts)_
-<!-- commandsstop -->

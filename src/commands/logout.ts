@@ -1,7 +1,7 @@
 import { Command } from '@oclif/command';
 import * as chalk from 'chalk';
 import appLocalStorage from '../utils/app-local-storage';
-import auth from '../utils/auth';
+import auth from '../utils/auth.service';
 
 export default class Logout extends Command {
   static description = 'Log out of the current user account';

@@ -6,6 +6,14 @@ class Utils {
   static validateName(name: string) {
     return /^[a-zA-Z ]+$/.test(name);
   }
+
+  static parseTags(commaSeperatedTags: string): string[] {
+    return commaSeperatedTags.replace(/\s+/g, '').split(',');
+  }
+
+  static graphQlError(e: any): Error {
+    return e.response.errors[0].message;
+  }
 }
 
 export default Utils;

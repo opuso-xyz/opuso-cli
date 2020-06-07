@@ -1,7 +1,7 @@
 import { Command } from '@oclif/command';
 import cli from 'cli-ux';
 import * as chalk from 'chalk';
-import auth from '../utils/auth';
+import auth from '../utils/auth.service';
 
 export default class Login extends Command {
   static description = 'Login to your Opuso account';

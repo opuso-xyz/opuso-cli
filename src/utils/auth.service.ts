@@ -8,7 +8,7 @@ export interface UserData {
   token: string;
 }
 
-class Auth {
+class AuthService {
   client: GraphQLClient;
 
   constructor() {
@@ -81,7 +81,7 @@ mutation {
 
   async isLoggedIn() {
     const currentUser = this.getCurrentUser();
-    return currentUser === null;
+    return !(currentUser === null);
   }
 
   async getCurrentUser(): Promise<UserData> {
@@ -97,5 +97,5 @@ mutation {
   }
 }
 
-const auth = new Auth();
+const auth = new AuthService();
 export default auth;
