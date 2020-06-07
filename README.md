@@ -30,6 +30,9 @@ USAGE
 <!-- commands -->
 * [`opuso hello [FILE]`](#opuso-hello-file)
 * [`opuso help [COMMAND]`](#opuso-help-command)
+* [`opuso login`](#opuso-login)
+* [`opuso logout [FILE]`](#opuso-logout-file)
+* [`opuso signup [FILE]`](#opuso-signup-file)
 
 ## `opuso hello [FILE]`
 
@@ -67,4 +70,51 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
+
+## `opuso login`
+
+Login to your Opuso account
+
+```
+USAGE
+  $ opuso login
+
+OPTIONS
+  -f, --force
+  -h, --help   show CLI help
+```
+
+_See code: [src/commands/login.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/login.ts)_
+
+## `opuso logout [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ opuso logout [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/logout.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/logout.ts)_
+
+## `opuso signup [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ opuso signup [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/signup.ts](https://github.com/caelinsutch/%5D/blob/v0.0.0/src/commands/signup.ts)_
 <!-- commandsstop -->
