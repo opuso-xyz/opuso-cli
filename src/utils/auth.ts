@@ -18,7 +18,7 @@ class Auth {
   async signupUser(email: string, password: string, name: string): Promise<UserData> {
     const query = `
 mutation {
-  result: signup(
+  signup(
     email: "${email}",
     password: "${password}",
     name: "${name}"
@@ -32,13 +32,25 @@ mutation {
   }
 }
     `;
-    return this.queryAndHandleData(query);
+    try {
+      const data = await this.client.request(query) as any;
+      data.signup.user.token = data.signup.token;
+      await this.setCurrentUser(data.signup.user);
+      return data.signup.user;
+    } catch (e) {
+      const errorMessage = e.response.errors[0].message;
+      if (errorMessage.includes('duplicate key error')) {
+        throw new Error('User already registered with that email!');
+      } else {
+        throw new Error(errorMessage);
+      }
+    }
   }
 
   async loginUser(email: string, password: string): Promise<UserData> {
     const query = `
 mutation {
-  result: login(
+  login(
     email: "${email}",
     password: "${password}",
   ) {
@@ -52,17 +64,18 @@ mutation {
 }
     `;
 
-    return this.queryAndHandleData(query);
-  }
-
-  private async queryAndHandleData(query: any): Promise<UserData> {
     try {
       const data = await this.client.request(query) as any;
-      data.result.user.token = data.result.token;
-      await this.setCurrentUser(data.result.user);
-      return data.result.user;
+      data.login.user.token = data.login.token;
+      await this.setCurrentUser(data.login.user);
+      return data.login.user;
     } catch (e) {
-      throw new Error(e.response.errors[0].message);
+      const errorMessage = e.response.errors[0].message;
+      if (errorMessage.includes('No such user found')) {
+        throw new Error('Email or password incorrect!');
+      } else {
+        throw new Error(errorMessage);
+      }
     }
   }
 

@@ -1,22 +1,21 @@
-import { Command, flags } from '@oclif/command';
+import { Command } from '@oclif/command';
+import * as chalk from 'chalk';
 import appLocalStorage from '../utils/app-local-storage';
 import auth from '../utils/auth';
 
 export default class Logout extends Command {
-  static description = 'Logout of the current user account'
-
-  static flags = {
-    help: flags.help({ char: 'h' }),
-    // flag with no value (-f, --force)
-    force: flags.boolean({ char: 'f' }),
-  }
+  static description = 'Log out of the current user account';
 
   async run() {
     if (await appLocalStorage.getData('user')) {
-      await auth.logoutUser();
-      this.log('Logging out the current user...');
+      try {
+        await auth.logoutUser();
+        this.log(`${chalk.green('[Success]')} Successfully logged out!`);
+      } catch (e) {
+        this.error(chalk.red(e));
+      }
     } else {
-      this.log('No user currently logged in!');
+      this.error(chalk.red('No user currently logged in!'));
     }
   }
 }
