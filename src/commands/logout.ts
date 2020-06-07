@@ -1,26 +1,22 @@
 import { Command, flags } from '@oclif/command';
+import appLocalStorage from '../utils/app-local-storage';
+import auth from '../utils/auth';
 
 export default class Logout extends Command {
-  static description = 'describe the command here'
+  static description = 'Logout of the current user account'
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({ char: 'n', description: 'name to print' }),
     // flag with no value (-f, --force)
     force: flags.boolean({ char: 'f' }),
   }
 
-  static args = [{ name: 'file' }]
-
   async run() {
-    // eslint-disable-next-line no-shadow
-    const { args, flags } = this.parse(Logout);
-
-    const name = flags.name ?? 'world';
-    this.log(`hello ${name} from /home/caelin/Github/opuso/src/commands/logout.ts`);
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`);
+    if (await appLocalStorage.getData('user')) {
+      await auth.logoutUser();
+      this.log('Logging out the current user...');
+    } else {
+      this.log('No user currently logged in!');
     }
   }
 }

@@ -16,30 +16,29 @@ class Auth {
   }
 
   async signupUser(email: string, password: string, name: string): Promise<UserData> {
-    const query = `{
-      mutation {
-        signup(
-          email: ${email},
-          password: ${password},
-          name: ${name}
-        ) {
-          token
-          user {
-            id
-            email
-            name
-          }
-        }
-      }
+    const query = `
+mutation {
+  result: signup(
+    email: "${email}",
+    password: "${password}",
+    name: "${name}"
+  ) {
+    token
+    user {
+      id
+      email
+      name
+    }
+  }
+}
     `;
-
     return this.queryAndHandleData(query);
   }
 
   async loginUser(email: string, password: string): Promise<UserData> {
     const query = `
 mutation {
-  login(
+  result: login(
     email: "${email}",
     password: "${password}",
   ) {
@@ -59,9 +58,9 @@ mutation {
   private async queryAndHandleData(query: any): Promise<UserData> {
     try {
       const data = await this.client.request(query) as any;
-      data.login.user.token = data.login.token;
-      await this.setCurrentUser(data.login.user);
-      return data.login.user;
+      data.result.user.token = data.result.token;
+      await this.setCurrentUser(data.result.user);
+      return data.result.user;
     } catch (e) {
       throw new Error(e.response.errors[0].message);
     }
@@ -78,6 +77,10 @@ mutation {
 
   async setCurrentUser(user: UserData) {
     return appLocalStorage.setData('user', user);
+  }
+
+  async logoutUser() {
+    return appLocalStorage.clearData('user');
   }
 }
 

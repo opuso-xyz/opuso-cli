@@ -12,6 +12,10 @@ class LocalStorage {
   async getData(key: string): Promise<any> {
     return storage.getItem(key);
   }
+
+  async clearData(key: string): Promise<any> {
+    return storage.del(key);
+  }
 }
 
 const appLocalStorage = new LocalStorage();
